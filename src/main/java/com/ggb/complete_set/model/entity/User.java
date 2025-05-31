@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode//自动生成equals（）方法和hashcode（）方法
 @SuppressWarnings("all")
-public class Users implements Serializable {
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;  // 序列化版本号
 
     @Id
