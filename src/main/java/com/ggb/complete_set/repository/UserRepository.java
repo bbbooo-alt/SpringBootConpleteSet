@@ -4,6 +4,7 @@ import com.ggb.complete_set.model.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,10 +15,11 @@ import java.util.Optional;
 
 // 用户数据访问接口
 @Repository// 标识这是一个数据访问层组件
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
     //1.继承JpaRepository
     //继承JpaRepository，类就有了基本的crud
     //《user， long》表示实体类型和主键类型
+    //2.继承JpaSpecificationExecutor，类就能完成更复杂的动态查询
 
     //定义简单的查询方法
     Optional<User> findByName(String name);
@@ -68,5 +70,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //    通过方法名自动生成对应的SQL查询
     //    不需要手动编写实现代码
 
-    //2.实现基本的crud
+    //default允许接口实现自己的方法，在实现类中就不必强制实现，主要用于逻辑相同重复率很高的逻辑。
 }
